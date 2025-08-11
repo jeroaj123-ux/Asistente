@@ -84,7 +84,21 @@ public class Main {
       System.out.println("5. Alegrarte el dia (O empeorarlo) con un chiste");
       System.out.println("6. Dar consejo");
 
-      int opcion = scannerNumero.nextInt();
+      System.out.print("Elige una opción: ");
+      String entrada = scannerTexto.nextLine();
+      int opcion;
+
+      // Utilizamos un bloque try-catch ya que me di cuenta que si el usuario
+      // ingresaba una letra en lugar de un numero, el programa se caia, asi que
+      // investigue y me di cuenta que con un try-catch se puede manejar esta
+      // excepcion.
+      try {
+        opcion = Integer.parseInt(entrada);
+      } catch (NumberFormatException e) {
+        System.out.println("Por favor ingresa un número válido.");
+        continue;
+      }
+
       switch (opcion) {
         case SALUDAR:
           System.out.println("Hola " + nombre);
@@ -111,7 +125,7 @@ public class Main {
           darConsejo();
           break;
         default:
-          System.out.println("No entiendo");
+          System.out.println("Aun no tengo esa opcion, te pido elegir una opcion valida.");
       }
       if (continuar) {
         System.out.print("Deseas continuar? (si/no): ");
